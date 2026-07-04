@@ -1,0 +1,29 @@
+{
+  "name": "ui",
+  "version": "0.0.1",
+  "description": "Trade UI",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "web:clean": "cd apps/web && bun run clean",
+    "_service:clean": "cd apps/service && bun run clean",
+    "clean": "rm -rf node_modules bun.lock && bun run web:clean",
+    "web:fmt": "cd apps/web && bun run fmt",
+    "_service:fmt": "cd apps/service && bun run fmt",
+    "web:fmt.chk": "cd apps/web && bun run fmt.chk",
+    "_service:fmt.chk": "cd apps/service && bun run fmt.chk",
+    "web:chk": "cd apps/web && bun run chk",
+    "_service:chk": "cd apps/service && bun run chk",
+    "web:dev": "bun run web:fmt && bun run web:chk && cd apps/web && bun run dev",
+    "_service:dev": "bun run service:fmt && bun run service:chk && cd apps/service && bun run dev",
+    "web:build": "cd apps/web && bun run build",
+    "reinstall": "bun run clean && bun install",
+    "web:restart": "bun run reinstall && bun run web:dev",
+    "_service:restart": "bun run reinstall && bun run service:dev",
+    "web:start": "bun install && bun run web:dev",
+    "_service:start": "bun install && bun run service:dev"
+  }
+}
