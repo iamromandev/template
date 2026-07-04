@@ -1,9 +1,3 @@
-"""User service — registration, authentication, profile management.
-
-This service is the **business logic** layer. The route layer calls it;
-the repo is injected via the constructor.
-"""
-
 from __future__ import annotations
 
 import uuid
@@ -15,7 +9,7 @@ from src.core.error import Error
 from src.core.security import hash_password, verify_password
 from src.data.db.model.user import User
 from src.data.db.repo.user_repo import UserRepo
-from src.module.user.schema.response import TokenSchema, UserSchema
+from src.data.db.schema.user.response import TokenSchema, UserSchema
 
 
 class UserService:
@@ -150,6 +144,3 @@ class UserService:
             created_at=user.created_at,
             updated_at=user.updated_at,
         )
-
-
-__all__ = ["UserService"]

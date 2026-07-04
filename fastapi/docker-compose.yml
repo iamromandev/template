@@ -1,8 +1,8 @@
 services:
   db:
     image: postgres:18
-    hostname: db-app
-    container_name: db-app
+    hostname: db-fastapi
+    container_name: db-fastapi
     restart: on-failure
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -22,8 +22,8 @@ services:
       retries: 3
 
   server:
-    hostname: server-app
-    container_name: server-app
+    hostname: server-fastapi
+    container_name: server-fastapi
     restart: unless-stopped
     build:
       context: .
@@ -47,17 +47,17 @@ services:
     env_file:
       - .env
     command: >
-      bash -c "python -m src.scripts.migrate &&
+      bash -c "python -m scripts.migrate &&
       uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload --loop uvloop"
 
 networks:
   db:
-    name: db-app
+    name: db-fastapi
     driver: bridge
   server:
-    name: server-app
+    name: server-fastapi
     driver: bridge
 
 volumes:
   db:
-    name: db-app
+    name: db-fastapi

@@ -1,10 +1,3 @@
-"""User CRUD routes — admin-only in production, but ``/me`` is open to any user.
-
-Note: this template only demonstrates the ``/me`` self-service surface.
-Full admin CRUD is intentionally left as an exercise for the consumer
-to keep the template focused.
-"""
-
 from __future__ import annotations
 
 import uuid
@@ -14,9 +7,9 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
 from src.core.success import Success
-from src.module.user.schema.request import UserUpdateRequest
-from src.module.user.schema.response import UserSchema
-from src.module.user.service import UserService, get_user_service
+from src.data.db.schema.user.request import UserUpdateRequest
+from src.data.db.schema.user.response import UserSchema
+from src.service import UserService, get_user_service
 from src.shared.deps.auth import require_user_id
 
 router = APIRouter()

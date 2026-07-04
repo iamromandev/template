@@ -19,7 +19,7 @@ ignore = [
 
 [lint.per-file-ignores]
 # FastAPI injects dependencies via default callables.
-"src/deps/**/*.py" = ["B008"]
+"src/shared/deps/**/*.py" = ["B008"]
 "src/route/**/*.py" = ["B008"]
 
 [format]

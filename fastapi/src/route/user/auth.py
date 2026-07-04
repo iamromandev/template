@@ -1,10 +1,3 @@
-"""Authentication routes — register / login / refresh / logout.
-
-These live under ``/users/auth`` (because they share the user module),
-but the OAuth2 ``tokenUrl`` advertised in the OpenAPI spec points at
-``/api/v1/users/auth/login`` via the override in main.py.
-"""
-
 from __future__ import annotations
 
 import uuid
@@ -14,9 +7,9 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
 from src.core.success import Success
-from src.module.user.schema.request import LoginRequest, RefreshRequest, RegisterRequest
-from src.module.user.schema.response import TokenSchema, UserSchema
-from src.module.user.service import UserService, get_user_service
+from src.data.db.schema.user.request import LoginRequest, RefreshRequest, RegisterRequest
+from src.data.db.schema.user.response import TokenSchema, UserSchema
+from src.service import UserService, get_user_service
 from src.shared.deps.auth import require_user_id
 
 router = APIRouter()

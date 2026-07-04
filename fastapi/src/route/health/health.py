@@ -4,11 +4,10 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
 from src.core.success import Success
-from src.module.health.schema.response import HealthSchema
-from src.module.health.service import get_health_service
-from src.module.health.service.health_service import HealthService
+from src.data.db.schema import HealthSchema
+from src.service.health import HealthService, get_health_service
 
-router = APIRouter()
+router = APIRouter(prefix="/health", tags=["Health"])
 
 
 @router.get(
@@ -16,7 +15,7 @@ router = APIRouter()
     response_model=Success[HealthSchema],
 )
 async def check(
-    health_service: Annotated[HealthService, Depends(get_health_service)],
+        health_service: Annotated[HealthService, Depends(get_health_service)],
 ) -> JSONResponse:
     data = await health_service.check_health()
     return Success.ok(data=data).to_resp()

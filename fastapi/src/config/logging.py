@@ -31,8 +31,8 @@ _LOG_LEVELS = {
 def _resolve_level() -> str:
     settings = get_settings()
     if settings.debug:
-        return "debug"
-    return "info"
+        return "DEBUG"
+    return "INFO"
 
 
 def _resolve_sink() -> str:

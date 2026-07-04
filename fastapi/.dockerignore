@@ -1,21 +1,17 @@
+### allow ###
+!.env.example
+
+### core ###
+.idea
+.vscode
+.DS_Store
+
+### cache ###
 __pycache__
-*.pyc
-*.pyo
-*.pyd
 .pytest_cache
 .ruff_cache
 .venv
-.coverage
-htmlcov
-.git
-.gitignore
-.idea
-.vscode
-*.md
-docs/
-tests/
-.dockerignore
-dockerfile
-docker-compose*.yml
-.env*
-!.env.example
+
+### generated ###
+**/*.lock
+**/*.pyc

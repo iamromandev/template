@@ -14,15 +14,14 @@ from __future__ import annotations
 
 from contextlib import asynccontextmanager
 
-from fastapi import APIRouter, FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.config import configure_logging, get_settings
 from src.core.common import get_app_version
 from src.core.error import init_global_errors
 from src.data.db import init_db
-from src.module.health.route import router as _health_router
-from src.module.user.route import router as _user_router
+from src.route import router as _router
 from src.shared.middleware.error_boundary import ErrorBoundaryMiddleware
 from src.shared.middleware.logging import LoggingMiddleware
 from src.shared.middleware.request_id import RequestIdMiddleware
@@ -67,9 +66,9 @@ def create_app() -> FastAPI:
     init_global_errors(app)
 
     # Routes: versioned API + Prometheus scrape endpoint.
-    _router = APIRouter(prefix="/api/v1")
-    _router.include_router(_health_router)
-    _router.include_router(_user_router)
+    for router in [_router]:
+        app.include_router(router)
+
     app.include_router(_router)
     app.include_router(metrics_router)
 

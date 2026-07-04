@@ -41,7 +41,7 @@ def main() -> NoReturn:
     failures = [desc for cmd, desc in steps if not _run(cmd, desc)]
     total = len(steps) - len(failures)
 
-    print(f"\n{'='*40}")
+    print(f"\n{'=' * 40}")
     print(f"Results: {total}/{len(steps)} passed")
     if failures:
         print(f"Failed: {', '.join(failures)}")

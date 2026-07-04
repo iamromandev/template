@@ -1,22 +1,21 @@
 from typing import Annotated
 
 from pydantic import Field
-
-from src.core.base import BaseSchema
+from src.core.schema import BaseResponse
 from src.core.type import Status
 
 
-class DatabaseSchema(BaseSchema):
+class DatabaseSchema(BaseResponse):
     status: Annotated[Status, Field(default=Status.ERROR)]
     version: Annotated[str | None, Field(default=None)]
 
 
-class HealthSchema(BaseSchema):
+class HealthSchema(BaseResponse):
     version: Annotated[str, Field(default="0.0.1")] = "0.0.1"
     db: Annotated[DatabaseSchema | None, Field(default=None)] = None
 
 
-class HealthCheckLogSchema(BaseSchema):
+class HealthCheckLogSchema(BaseResponse):
     """Schema for a single health check log entry."""
 
     id: Annotated[str, Field(...)]
