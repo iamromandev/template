@@ -8,8 +8,8 @@ from src.auth.permission import Role
 from src.core.error import Error
 from src.core.security import hash_password, verify_password
 from src.data.db.model.user import User
-from src.data.db.repo.user_repo import UserRepo
-from src.data.db.schema.user.response import TokenSchema, UserSchema
+from src.data.repo.user_repo import UserRepo
+from src.data.schema.user.response import TokenSchema, UserSchema
 
 
 class UserService:

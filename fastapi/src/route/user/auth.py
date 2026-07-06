@@ -7,8 +7,8 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
 from src.core.success import Success
-from src.data.db.schema.user.request import LoginRequest, RefreshRequest, RegisterRequest
-from src.data.db.schema.user.response import TokenSchema, UserSchema
+from src.data.schema.user.request import LoginRequest, RefreshRequest, RegisterRequest
+from src.data.schema.user.response import TokenSchema, UserSchema
 from src.service import UserService, get_user_service
 from src.shared.deps.auth import require_user_id
 

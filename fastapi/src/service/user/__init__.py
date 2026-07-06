@@ -1,6 +1,6 @@
 from collections.abc import AsyncGenerator
 
-from src.data.db.repo.user_repo import UserRepo
+from src.data.repo.user_repo import UserRepo
 from src.service.user.user_service import UserService
 
 
